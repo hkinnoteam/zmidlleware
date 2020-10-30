@@ -1,6 +1,8 @@
-#How to use Zmiddleware
-##Install
+#How to use Zmiddleware  
+
+##Install  
 > composer require "hkinnoteam/zmidlleware"  
+
 ##Implementation
 * create a class which implement **ZMiddleware\Contract\MiddlewareInterface**
 ```php
