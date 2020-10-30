@@ -31,6 +31,8 @@ class AssignResultMiddleware implements MiddlewareInterface
 ```php
 use AssignResultMiddleware;
 use ZMiddleware\Annotations\Middleware;
+class Foo
+{
 
     /**
      * single middleware
@@ -43,6 +45,7 @@ use ZMiddleware\Annotations\Middleware;
         $foo = new \stdClass();
         return $foo;
     }
+}
 ```
 > you can also assign multiple middlewares  
 ```php
@@ -50,6 +53,8 @@ use AssignBooMiddleware;
 use AssignFooMiddleware;
 use ZMiddleware\Annotations\Middlewares;
 use ZMiddleware\Annotations\Middleware;
+class Foo
+{
 
     /**
      * multiple middlewares
@@ -57,7 +62,7 @@ use ZMiddleware\Annotations\Middleware;
      * @Middlewares({
      *     @Middleware(AssignBooMiddleware::class)
      *     @Middleware(AssignFooMiddleware::class)
-     *   })
+     * })
      * @return object
      */
     public static function Foo(): object
@@ -65,4 +70,5 @@ use ZMiddleware\Annotations\Middleware;
         $foo = new \stdClass();
         return $foo;
     }
+}
 ```
