@@ -9,12 +9,18 @@ use Doctrine\Common\Annotations\FileCacheReader;
 
 abstract class AbstractAnnotation
 {
+    /**
+     * collect middleware
+     * @param string $className
+     * @param string $method
+     * @return array|string[]
+     */
     public static function collectMethod(string $className, string $method):array
     {
         try {
             $reflectionClass = new \ReflectionClass($className);
             $reflectionMethod = $reflectionClass->getMethod($method);
-            $reader = new FileCacheReader(new AnnotationReader(), '../storage/annotation',true);
+            $reader = new FileCacheReader(new AnnotationReader(), storage_path().'/annotation',true);
             $annotation = $reader->getMethodAnnotations($reflectionMethod);
             if (empty($annotation)){
                 throw new \RuntimeException('not need handle');
@@ -31,6 +37,11 @@ abstract class AbstractAnnotation
         }
     }
 
+    /**
+     * get batch middleware
+     * @param $middlewares
+     * @return array
+     */
     public static function getClasses($middlewares): array
     {
         $middlewaresResult = [];
@@ -40,6 +51,11 @@ abstract class AbstractAnnotation
         return $middlewaresResult;
     }
 
+    /**
+     * get single middleware
+     * @param $middleware
+     * @return string
+     */
     public static function getClass($middleware): string
     {
         return $middleware->middleware;

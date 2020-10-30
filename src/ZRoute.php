@@ -9,6 +9,13 @@ use ZMiddleware\Pipeline\Pipeline;
 
 class ZRoute
 {
+    /**
+     * dispatch request
+     * @param $reflection
+     * @param $pass
+     * @param array $class
+     * @return mixed
+     */
     public static function dispatch($reflection, $pass, array $class)
     {
         try {
@@ -21,12 +28,16 @@ class ZRoute
                 return $reflection->invokeArgs(null, $pass);
             });
         }catch(\Exception $e){
-            var_dump($e->getMessage());
             return $reflection->invokeArgs(null, $pass);
         }
 
     }
 
+    /**
+     * create handler instance
+     * @param array $handlers
+     * @return array
+     */
     private function prepareHandlers(array $handlers): array
     {
         $classes = [];

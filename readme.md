@@ -30,10 +30,34 @@ class AssignResultMiddleware implements MiddlewareInterface
 ## Add annotation into your api method
 ```php
 use AssignResultMiddleware;
+use ZMiddleware\Annotations\Middleware;
 
     /**
-     *
+     * single middleware
+     * 
      * @Middleware(AssignResultMiddleware::class)
+     * @return object
+     */
+    public static function Foo(): object
+    {
+        $foo = new \stdClass();
+        return $foo;
+    }
+```
+> you can also assign multiple middlewares  
+```php
+use AssignBooMiddleware;
+use AssignFooMiddleware;
+use ZMiddleware\Annotations\Middlewares;
+use ZMiddleware\Annotations\Middleware;
+
+    /**
+     * multiple middlewares
+     *
+     * @Middlewares({
+     *     @Middleware(AssignBooMiddleware::class)
+     *     @Middleware(AssignFooMiddleware::class)
+     *   })
      * @return object
      */
     public static function Foo(): object
