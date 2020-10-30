@@ -1,9 +1,9 @@
-#How to use Zmiddleware  
+# How to use Zmiddleware  
 
-##Install  
+## Install  
 > composer require "hkinnoteam/zmidlleware"  
 
-##Implementation
+## Implementation
 * create a class which implement **ZMiddleware\Contract\MiddlewareInterface**
 ```php
 use ZMiddleware\Contract\MiddlewareInterface;
@@ -27,7 +27,7 @@ class AssignResultMiddleware implements MiddlewareInterface
     }
 }
 ```
-##Add annotation into your api method
+## Add annotation into your api method
 ```php
 use AssignResultMiddleware;
 
