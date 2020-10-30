@@ -34,7 +34,6 @@ use AssignResultMiddleware;
     /**
      *
      * @Middleware(AssignResultMiddleware::class)
-     * get cart summary by type
      * @return object
      */
     public static function Foo(): object
