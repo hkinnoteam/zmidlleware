@@ -31,7 +31,7 @@ class AssignResultMiddleware implements MiddlewareInterface
 ```php
 use AssignResultMiddleware;
 
- /**
+    /**
      *
      * @Middleware(AssignResultMiddleware::class)
      * get cart summary by type
