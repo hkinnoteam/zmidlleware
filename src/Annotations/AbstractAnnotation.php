@@ -5,7 +5,8 @@ namespace ZMiddleware\Annotations;
 
 
 use Doctrine\Common\Annotations\AnnotationReader;
-use Doctrine\Common\Annotations\FileCacheReader;
+use Doctrine\Common\Annotations\CachedReader;
+use Doctrine\Common\Cache\ApcuCache;
 
 abstract class AbstractAnnotation
 {
@@ -20,7 +21,7 @@ abstract class AbstractAnnotation
         try {
             $reflectionClass = new \ReflectionClass($className);
             $reflectionMethod = $reflectionClass->getMethod($method);
-            $reader = new FileCacheReader(new AnnotationReader(), storage_path().'/annotation',true);
+            $reader = new CachedReader(new AnnotationReader(), new ApcuCache());
             $annotation = $reader->getMethodAnnotations($reflectionMethod);
             if (empty($annotation)){
                 throw new \RuntimeException('not need handle');
