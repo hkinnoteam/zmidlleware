@@ -24,6 +24,12 @@ class Pipeline
      */
     protected $pipes = [];
 
+    public function via(string $method)
+    {
+        $this->method = $method;
+        return $this;
+    }
+
     public function send($passable)
     {
         $this->passable = $passable;
