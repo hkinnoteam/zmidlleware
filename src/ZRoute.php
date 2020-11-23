@@ -16,21 +16,22 @@ class ZRoute
      * @param array $class
      * @return mixed
      */
-    public static function dispatch($reflection, $pass, array $class)
+    public static function dispatch($pass, array $class)
     {
+        [$class, $method] = $class;
+        $controller = di($class);
         try {
-            [$class, $method] = $class;
             $route     = new self();
             $pipelines = new Pipeline();
             $pipes     = $route->prepareHandlers(AbstractAnnotation::collectMethod($class, $method));
 
-            return $pipelines->send($pass)->through($pipes)->then(function ($pass) use ($reflection){
-                return $reflection->invokeArgs(null, $pass);
+            return $pipelines->send($pass)->through($pipes)->then(function ($pass) use ($controller, $method){
+                return $controller->{$method}(...$pass);
             });
         }catch(\Exception $e){
-            return $reflection->invokeArgs(null, $pass);
-        }
 
+            return $controller->{$method}(...$pass);
+        }
     }
 
     /**
