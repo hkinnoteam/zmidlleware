@@ -43,7 +43,7 @@ class ZRoute
     {
         $classes = [];
         foreach ($handlers as $handler){
-            $classes [] = new $handler();
+            $classes [] = di($handler);
         }
         return $classes;
     }
