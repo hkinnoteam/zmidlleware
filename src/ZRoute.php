@@ -29,8 +29,7 @@ class ZRoute
                 return $controller->{$method}(...$pass);
             });
         }catch(\Exception $e){
-
-            return $controller->{$method}(...$pass);
+            throw $e;
         }
     }
 
